@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<main class="content-wrapper">
+
+<section class="container padding-top-3x padding-bottom-3x">
+
+<div class="col-md-6 padding-bottom col-md-offset-3">
+<h1>Register</h1>
+
+  <form [formGroup]='register' (ngSubmit)="createUser(createUserForm)" novalidate>
+
+    <div class="ui-g">
+
+
+      <input type='text' formControlName='firstName' class='form-control' placeholder='First Name'>
+
+      <div *ngIf="firstName.invalid && (firstName.dirty || isSubmitted)" class="text-danger">
+        <div *ngIf="firstName.errors.required">First name is required.</div>
+      </div>
+
+      <input type='text' formControlName='lastName' class='form-control' placeholder='Last Name'>
+
+      <div *ngIf="lastName.invalid && (lastName.dirty || isSubmitted)" class="text-danger">
+        <div *ngIf="lastName.errors.required">Last name is required.</div>
+      </div>
+
+
+      <input type='string' formControlName='mobileNumber' class='form-control' placeholder='Mobile Number' maxLength="8" advs-phone>
+
+      <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || isSubmitted)" class="text-danger">
+        <div *ngIf="mobileNumber.errors.required">Mobile number is required.</div>
+        <div *ngIf="mobileNumber.errors.pattern && !mobileNumber.errors.required">Please enter a 8 digit mobile number starting with 8 / 9.</div>
+      </div>
+
+
+
+      <input type='text' formControlName='email' class='form-control' advs-email placeholder='Email'>
+
+      <div *ngIf="email.invalid && (email.dirty || isSubmitted)" class="text-danger">
+        <div *ngIf="email.errors.required">Email address is required.</div>
+        <div *ngIf="email.errors.pattern && !email.errors.required">Please enter a valid email address.</div>
+      </div>
+
+
+
+      <input type='password' formControlName='password' class='form-control' advs-compare="verify" parent='true' placeholder='Password' minlength = "6">
+
+      <div *ngIf="password.invalid && (password.dirty || isSubmitted)" class="text-danger">
+        Password of minimum 6 characters is required.
+      </div>
+
+
+      <input type='password' formControlName='verify' class='form-control' advs-compare="password" parent='false' placeholder='Confirm Password'  minlength = "6">
+
+      <div *ngIf="verify.invalid && (verify.dirty || isSubmitted)" class="text-danger">
+        <div *ngIf="verify.errors.required">Confirm password is required.</div>
+        <div *ngIf="verify.errors.compare && !verify.errors.required">Password mismatch.</div>
+      </div>
+
+      <div class="ui-g-12">
+
+        <input type="submit" value="Register" class="btn btn-primary btn-block waves-effect waves-light" />
+
+
+        <app-alert></app-alert>
+
+        <a [routerLink]="['/login']"><i class="material-icons">keyboard_backspace</i> Back to Login</a>
+
+
+      </div>
+    </div>
+
+  </form>
+
+</div>

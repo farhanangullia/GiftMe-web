@@ -1,0 +1,91 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+      <!-- Shop Catalog -->
+      <section class="container padding-top-3x padding-bottom-3x">
+
+        <!-- Sidebar Toggle / visible only on mobile -->
+        <div class="sidebar-toggle">
+          <i class="material-icons filter_list"></i>
+        </div>
+
+        <h1 class="space-top-half">All Shops</h1>
+        <div class="row padding-top">
+                    <!-- Sidebar (Filters) -->
+                    <div class="col-md-3 col-sm-4">
+                        <aside class="sidebar">
+                          <span class="sidebar-close"><i class="material-icons close"></i></span>
+                          <div class="widgets">
+
+
+                            <!-- Sorting Widget -->
+                            <div class="widget widget-sorting">
+                              <h3 class="widget-title">Sort By Area</h3>
+                              <label class="form-check-label" *ngFor="let filterItem of filterItems; let i = index;" class="form-check">
+                                  <input type="checkbox" class="form-check-input" [(ngModel)]="filterItem.checked" [value]="filterItem.value"> {{filterItem.value}}
+                                </label>
+                            </div><!-- .widget.widget-sorting -->
+
+                          </div><!-- .widgets -->
+                        </aside><!-- .sidebar -->
+                      </div><!-- .col-md-3.col-sm-4 -->
+
+
+
+          <!-- Products Grid -->
+          <div class="col-md-9 col-sm-8">
+
+            <!-- Shop Bar -->
+            <div class="shop-bar">
+              <div class="column">
+                <p class="text-sm space-bottom-none">
+                    <span class="text-gray">Showing</span> {{items.length}} shops
+                </p>
+              </div><!-- .column -->
+
+
+              <div class="column">
+                <form method="get" class="search-box">
+                  <input type="text" class="form-control" placeholder="Search all shops" #input (input)="filterItem(input.value)">
+                  <button type="submit">
+                    <i class="material-icons search"></i>
+                  </button>
+                </form><!-- form.search-box -->
+              </div><!-- .column -->
+
+            </div><!-- .shop-bar -->
+
+            <div class="row">
+
+                <div class="row display-flex">
+              <!-- Item -->
+              <div class="col-md-4 col-sm-6" *ngFor="let item of items | filter: { property: ''} : checked() : false">
+                <a [routerLink] = "['/shop', item.shop.shopId]" style="text-decoration: none;">
+                <div class="shop-item">
+                  <div class="shop-thumbnail">
+                    <img src="{{item.shop.imgPath}}" alt="Shop item">
+
+                  </div>
+                  <div class="shop-item-details">
+                    <h3 class="shop-item-title">{{item.shop.shopName}}</h3>
+                    <span class="shop-item-price" style="color:#999 !important;">
+                      {{item.shop.area}}
+                    </span>
+                  </div>
+                </div><!-- .shop-item -->
+                </a>
+
+              </div><!-- .col-md-4.col-sm-6 -->
+
+
+
+            </div><!-- .row -->
+            </div> <!-- .row display-flex -->
+            <hr>
+
+
+          </div><!-- .col-md-9 col-sm-8 -->
+        </div><!-- .row -->
+      </section><!-- .container -->

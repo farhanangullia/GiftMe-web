@@ -1,0 +1,61 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "giftme-angular"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css", "../node_modules/bootstrap/dist/css/bootstrap.min.css", "../node_modules/font-awesome/css/font-awesome.min.css",
+        "./css/theme.css", "./css/vendor/material-icons.min.css", "./css/vendor/socicon.min.css"
+      ],
+      "scripts": ["../node_modules/jquery/dist/jquery.min.js", "../node_modules/bootstrap/dist/js/bootstrap.min.js" , "../node_modules/tether/dist/js/tether.js", "./js/vendor/detectizr.min.js", "./js/vendor/gmap3.min.js", "./js/vendor/icheck.min.js", "./js/vendor/isotope.pkgd.min.js", "./js/vendor/jquery.downCount.js", "./js/vendor/magnific-popup.min.js", "./js/vendor/modernizr.custom.js", "./js/vendor/nouislider.min.js", "./js/vendor/owl.carousel.min.js", "./js/vendor/page-preloading.js", "./js/vendor/smoothscroll.js", "./js/vendor/velocity.min.js", "./js/vendor/waves.min.js", "./js/scripts.js"],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

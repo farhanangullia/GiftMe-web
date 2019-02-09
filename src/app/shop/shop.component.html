@@ -1,0 +1,143 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+      <!-- Page Title -->
+      <section class="container padding-top-3x">
+        <h1 class="space-top-half tablet-center">{{shopToView.shop.shopName}}</h1>
+      </section><!-- .container-fluid -->
+
+      <!-- Filters Bar -->
+      <section class="container padding-top">
+
+      </section><!-- .container -->
+
+      <!-- Shop Catalog -->
+      <section class="container padding-bottom-3x">
+        <div class="row">
+
+          <!-- Item -->
+          <div class="col-lg-3 col-md-4 col-sm-6"  *ngFor = "let product of products">
+            <div class="shop-item">
+              <div class="shop-thumbnail">
+                  <a [routerLink] = "['/product', product.productId]">
+                <img src = '{{product.imgPath}}' alt="Shop item">
+                  </a>
+
+              </div>
+              <div class="shop-item-details">
+                <h3 class="shop-item-title"><a [routerLink] = "['/product', product.productId]">{{product.productName}}</a></h3>
+                <span class="shop-item-price">
+                  ${{product.price}}
+                </span>
+              </div>
+            </div><!-- .shop-item -->
+          </div><!-- .col-md-4.col-sm-6 -->
+
+
+
+               <!-- Product Tabs -->
+      <section class="container padding-top-2x">
+        <div class="row">
+          <div class="col-lg-10 col-md-10 col-xs-10 col-lg-offset-1">
+            <!-- Nav Tabs -->
+            <ul class="nav-tabs text-center" role="tablist">
+              <li class="active"><a href="#additional" role="tab" data-toggle="tab">Additional Info</a></li>
+              <li><a href="#reviews" role="tab" data-toggle="tab">Reviews</a></li>
+            </ul><!-- .nav-tabs -->
+            <!-- Tab panes -->
+            <div class="tab-content">
+
+              <div role="tabpanel" class="tab-pane transition fade in active" id="additional">
+              <br>
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table-no-border">
+                      <tr>
+                        <th>Address</th>
+                        <td>{{shopToView.shop.location}}</td>
+                      </tr>
+                      <tr>
+                        <th>Area</th>
+                        <td>{{shopToView.shop.area}}</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div><!-- .tab-pane -->
+
+
+              <div role="tabpanel" class="tab-pane transition fade" id="reviews">
+                <!-- Review -->
+                <br>
+                <div class="review" *ngFor = "let review of reviews">
+
+                  <div class="review-body">
+                    <div class="review-meta">
+                      <div class="column">
+                        <h4 class="review-title">{{review.title}}</h4>
+                      </div>
+                      <div class="column">
+                        <span class="product-rating text-warning">
+                          <i class="material-icons star" *ngIf="review.rating >= 1"></i>
+                          <i class="material-icons star" *ngIf="review.rating >= 2"></i>
+                          <i class="material-icons star" *ngIf="review.rating >= 3"></i>
+                          <i class="material-icons star" *ngIf="review.rating >= 4"></i>
+                          <i class="material-icons star" *ngIf="review.rating >= 5"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <p>{{review.comment}}</p>
+                    <cite>{{review.customerName}}</cite>
+                  </div>
+                </div><!-- .review -->
+                <!-- Reviview Form -->
+                <div *ngIf ="loggedIn">
+                <h4 class="padding-top">Leave a review</h4>
+                <form [formGroup]='commentForm' class="row padding-top" novalidate>
+
+                  <div class="col-sm-12">
+                    <div class="form-element">
+                      <input type="text" formControlName='title' class="form-control" placeholder="Title*" required>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-element form-select">
+                      <select class="form-control" formControlName='rating'>
+                        <option disabled selected value> -- Review rating -- </option>
+                        <option value = 5>5 stars</option>
+                        <option value = 4>4 stars</option>
+                        <option value = 3>3 stars</option>
+                        <option value = 2>2 stars</option>
+                        <option value = 1>1 star</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="form-element">
+                      <textarea formControlName='comment' rows="8" class="form-control" placeholder="Review*" required></textarea>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-3 col-md-4 col-sm-6 col-lg-offset-9 col-md-offset-8 col-sm-offset-6">
+                        <button type="submit" class="btn btn-block btn-primary waves-effect waves-light space-top-none space-bottom-none" (click)=createReview()>Leave Review</button>
+                      </div>
+                    </div>
+                    <br>
+                    <app-alert></app-alert>
+                  </div>
+                </form><!-- .row -->
+                </div> <!-- .ngif loggedin -->
+              </div><!-- .tab-pane -->
+
+            </div><!-- .tab-content -->
+
+
+
+          </div>
+          </div>
+          </section>
+          </div>
+          </section>
+          </main>
+

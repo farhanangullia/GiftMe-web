@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+      <!-- Page Title -->
+      <section class="container padding-top-3x">
+        <h1 class="space-top-half tablet-center">Order #{{transactionDeliveryCode}}</h1>
+        <h3 class="tablet-center">{{this.address}}</h3>
+      </section><!-- .container-fluid -->
+
+
+      <!-- Shop Catalog -->
+      <section class="container padding-bottom-3x">
+        <div class="row">
+
+
+
+          <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>SKU Code</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor='let product of products'>
+                  <tr>
+                    <td>{{product.product.skuCode}}</td>
+                    <td>{{product.product.productName}}</td>
+                    <td>{{product.product.price}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>${{product.subTotal}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          <div class="table-responsive">
+            <table>
+              <tr>
+                <td><b>Subtotal</b></td>
+                <td>${{subtotal}}</td>
+              </tr>
+              <tr>
+                <td><b>Promo Code Discount</b></td>
+                <td>- ${{discount}}</td>
+              </tr>
+              <tr>
+                <td><b>Total</b></td>
+                <td>${{totalAmount}}</td>
+              </tr>
+            </table>
+          </div>
+
+
+
+
+          <button (click) = backButton()>Back</button>
+
+
+          </div>
+          </section>
+          </main>
+

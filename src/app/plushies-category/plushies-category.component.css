@@ -1,0 +1,6 @@
+@import "../../../node_modules/nouislider/distribute/nouislider.min.css";
+@import "~nouislider/distribute/nouislider.min.css";
+
+::ng-deep .noUi-connect {
+  background: #Ffddb9;
+}

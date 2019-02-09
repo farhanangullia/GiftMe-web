@@ -1,0 +1,111 @@
+<app-header>
+
+</app-header>
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+      <!-- Container -->
+      <form [formGroup]='transactionForm' class="container padding-top-3x padding-bottom-2x" novalidate>
+
+        <h1 class="space-top-half">Checkout</h1>
+        <div class="row padding-top">
+
+          <!-- Checkout Form -->
+          <div class="col-sm-8 padding-bottom">
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" formControlName="address" placeholder="Address" required>
+              </div>
+              <!-- <div class="col-sm-6">
+                <input type="number" class="form-control" name="co_address2" placeholder="Postal Code">
+              </div> -->
+            </div><!-- .row -->
+
+            <h1 class="space-top-half">Payment</h1>
+            <input type="text" class="form-control" formControlName="nameOnCard" placeholder="Name on card">
+            <input type="string" class="form-control" formControlName="cardNumber" placeholder="Card number" maxlength = "16" pattern="^\d{1,16}$d" required>
+
+
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="form-element form-select">
+                  <select class="form-control" name="expirymonth" formControlName="expiryMonth">
+                    <option value="">Expiry month</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                </div>
+
+
+              </div>
+              <div class="col-sm-6">
+                <div class="form-element form-select">
+                  <select class="form-control" formControlName="expiryYear">
+                    <option value="">Expiry year</option>
+                   <option>2018</option>
+                   <option>2019</option>
+                   <option>2020</option>
+                   <option>2021</option>
+                   <option>2022</option>
+                   <option>2023</option>
+                   <option>2024</option>
+                  </select>
+                </div>
+
+              </div>
+
+
+              <div class="col-sm-12">
+                <input type="password" class="form-control" formControlName="cvv" placeholder="CVV" maxLength = "3">
+              </div>
+
+
+            </div><!-- .row -->
+
+          </div><!-- .col-sm-8 -->
+
+          <!-- Sidebar -->
+          <div class="col-md-3 col-md-offset-1 col-sm-4 padding-bottom">
+            <aside>
+              <h3>Cart total:</h3>
+              <h4>${{subtotal}}</h4>
+              <hr>
+
+
+              + Delivery:
+              <div *ngIf = "subtotal >= 100">
+              <strong>$0</strong>
+              <br><br>
+              </div>
+
+              <div *ngIf = "subtotal < 100">
+              <strong>$10</strong>
+              <br><br>
+              </div>
+
+              <p class="text-sm text-gray">* Default delivery fee is $10. Spend $100 and above for free delivery.</p>
+              <a href="shopping-cart.html" class="btn btn-default btn-ghost icon-left btn-block">
+                <i class="material-icons arrow_back"></i>
+                Back To Cart
+              </a>
+              <button type="submit" class="btn btn-primary btn-block waves-effect waves-light space-top-none" (click)=sendTransaction()>Checkout</button>
+              <app-alert></app-alert>
+            </aside>
+
+          </div><!-- .col-md-3.col-sm-4 -->
+          </div>
+       <!-- .row -->
+      </form><!-- .container -->
+
+

@@ -1,0 +1,155 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+        <carousel>
+            <slide>
+              <img src="../../assets/img/shops/flowergaragebanner.jpg" alt="First slide" style="display: block; width: 100%;">
+
+              <div class="carousel-caption d-none d-md-block">
+                  <h3 style="color:#e299c4; text-shadow: none;">Fresh flowers for your loved ones</h3>
+                  <p style="color: #999999; text-shadow: none;">Send flowers like you mean it.</p>
+                 <button class="btn btn-primary" [routerLink] = "['/shop/7']">Shop now</button>
+
+              </div>
+
+            </slide>
+            <slide>
+              <img src="../../assets/img/shops/choconotlatebanner.jpg" alt="Second slide" style="display: block; width: 100%;">
+
+
+              <div class="carousel-caption d-none d-md-block">
+                  <h3 style="color:#e299c4; text-shadow: none;">We have plenty of chocolates to satisfy you</h3>
+                  <p style="color: #999999; text-shadow: none;">It is never too late for chocolates.</p>
+                  <button class="btn btn-primary" [routerLink] = "['/shop/4']">Shop now</button>
+              </div>
+            </slide>
+
+
+            <slide>
+              <img src="../../assets/img/shops/teddylodgebanner.jpg" alt="Third slide" style="display: block; width: 100%;">
+
+
+              <div class="carousel-caption d-none d-md-block">
+                  <h3 style="color:#e299c4; text-shadow: none;">Buy a teddy and make someone smile</h3>
+                  <p style="color: #999999; text-shadow: none;">We're mad about teddies.</p>
+                  <button class="btn btn-primary" [routerLink] = "['/shop/10']">Shop now</button>
+              </div>
+            </slide>
+          </carousel>
+
+
+
+      <!-- Content Wide -->
+      <section class="container-fluid padding-top-3x">
+
+        <!-- Featured Categories -->
+        <h3 class="text-center padding-top">Categories</h3>
+        <div class="row padding-top padding-bottom-3x">
+          <div class="col-sm-4 col-xs-12">
+            <a [routerLink]="['/category/plushies']" class="category-link">
+              <img src="../../assets/img/products/PSH002.jpg" alt="Category">
+              Plushies
+            </a><!-- .category-link -->
+          </div><!-- .col-sm-4 -->
+          <div class="col-sm-4 col-xs-12">
+            <a [routerLink]="['/category/flowers']" class="category-link">
+              <img src="../../assets/img/products/FLR003.jpg" alt="Category">
+              Flowers
+            </a><!-- .category-link -->
+          </div><!-- .col-sm-4 -->
+          <div class="col-sm-4 col-xs-12">
+            <a [routerLink]="['/category/confectionery']"class="category-link">
+              <img src="../../assets/img/products/CON001.jpg" alt="Category">
+              Confectionery
+            </a><!-- .category-link -->
+          </div><!-- .col-sm-4 -->
+        </div><!-- .row -->
+
+        <div class="row padding-top">
+
+          <!-- Products -->
+          <div class="col-sm-12">
+            <!-- Nav Tabs -->
+            <ul class="nav-tabs text-center" role="tablist">
+              <li class="active"><a href="#newcomers" role="tab" data-toggle="tab">New Arrivals</a></li>
+            </ul><!-- .nav-tabs -->
+
+            <!-- Tab Panes -->
+            <div class="tab-content">
+
+              <!-- #newcomers -->
+              <div role="tabpanel" class="tab-pane transition fade scale in active" id="newcomers">
+
+                <br><br>
+
+                <div class="row display-flex">
+
+
+
+                  <div class="col-lg-3 col-sm-6" *ngFor="let product of products">
+                    <div class="shop-item">
+                      <div class="shop-thumbnail">
+                          <a routerLink="/product/{{product.productId}}">
+                        <img src="{{product.imgPath}}" alt="Shop item">
+                          </a>
+                      </div>
+                      <div class="shop-item-details">
+                        <h3 class="shop-item-title"><a routerLink="/product/{{product.productId}}">{{product.productName}}</a></h3>
+                        <span class="shop-item-price">
+                          ${{product.price}}
+                        </span>
+                      </div>
+                    </div><!-- .shop-item -->
+                  </div><!-- .col-lg-3.col-sm-6 -->
+
+
+                </div> <!-- row display-flex -->
+                </div><!-- .row -->
+              </div><!-- .tab-pane#newcomers -->
+
+
+            </div><!-- .tab-content -->
+          </div><!-- .col-lg-9.col-md-8 -->
+        <!-- </div>.row -->
+      </section><!-- .container-fluid -->
+
+
+
+      <!-- Features -->
+      <section class="container space-top space-bottom padding-top-3x padding-bottom-3x">
+        <div class="row">
+          <!-- Feature -->
+          <div class="col-lg-4 col-sm-4">
+            <div class="feature text-center">
+              <div class="feature-icon">
+                <i class="material-icons location_on"></i>
+              </div>
+              <h4 class="feature-title">Free Shipping</h4>
+              <p class="feature-text">Free shipping on all orders over $100</p>
+            </div>
+          </div>
+          <!-- Feature -->
+          <div class="col-lg-4 col-sm-4">
+            <div class="feature text-center">
+              <div class="feature-icon">
+                <i class="material-icons autorenew"></i>
+              </div>
+              <h4 class="feature-title">Money Back Guarantee</h4>
+              <p class="feature-text">We return money within 30 days</p>
+            </div>
+          </div>
+          <!-- Feature -->
+          <div class="col-lg-4 col-sm-4">
+            <div class="feature text-center">
+              <div class="feature-icon">
+                <i class="material-icons headset_mic"></i>
+              </div>
+              <h4 class="feature-title">24/7 Online Support</h4>
+              <p class="feature-text">Friendly 24/7 customer support</p>
+            </div>
+          </div>
+
+        </div><!-- .row -->
+      </section><!-- .container -->

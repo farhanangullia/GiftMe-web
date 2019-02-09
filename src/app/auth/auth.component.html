@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<main class="content-wrapper">
+
+<section class="container padding-top-3x padding-bottom-3x">
+
+<div class="col-md-7 padding-bottom col-md-offset-2">
+<h1>Login</h1>
+
+	<!-- <div *ngIf="!isLogin"> -->
+		<form #loginForm="ngForm" (ngSubmit)="login(loginForm)" class="login-form">
+
+			<!-- <label for="username">Username</label> -->
+			<input class="form-control" placeholder="Email" type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel" />
+
+			<!-- <label for="password">Password</label> -->
+			<input class="form-control" placeholder="Password" type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32" required="true" #inpassword="ngModel" />
+
+			<!-- <button (click)="clear()" class="btn btn-primary btn-block">Clear</button> -->
+      <input type="submit" value="Login" class="btn btn-primary btn-block waves-effect waves-light"/>
+
+      <button [routerLink]="['/register']" class="btn btn-square btn-default waves-effect waves-light" style="width:100%;">Register</button>
+
+
+      <div style = "text-align: center;"><a [routerLink]="['/forgot-password']">Forgot your password?</a></div>
+
+      <br />
+
+      <app-alert></app-alert>
+
+		</form>
+		<!-- </div> -->
+	</div>
+
+
+</section>
+</main>
+
+

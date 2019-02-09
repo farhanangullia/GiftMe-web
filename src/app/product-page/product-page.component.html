@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+      <!-- Pager + Product Gallery -->
+      <section class="fw-section bg-gray padding-top-3x">
+
+        <div class="container padding-top">
+
+          <!-- Product Gallery -->
+          <div class="product-gallery">
+            <!-- Preview -->
+            <ul class="product-gallery-preview">
+              <li id="preview02" class="current"><img [src] = 'productToView.imgPath' alt="Product"></li>
+            </ul><!-- .product-gallery-preview -->
+          </div><!-- .product-gallery -->
+        </div><!-- .container -->
+      </section><!-- .fw-section.bg-gray -->
+
+      <!-- Product Info -->
+      <section class="fw-section bg-gray padding-bottom-3x">
+        <div class="container">
+          <div class="product-info padding-top-2x text-center">
+            <h1 class="h2 space-bottom-half">{{productToView.productName}}</h1>
+            <h2>${{productToView.price}}</h2>
+            <p class="text-sm text-gray">{{productToView.description}}</p>
+            <div class="product-meta">
+              <div class="product-sku">
+                <strong>SKU: </strong>
+                <span>{{productToView.skuCode}}</span>
+              </div>
+              <div class="product-category">
+                <strong>Category: </strong>
+                <a (click) = goToCategory(productToView.category)>{{productToView.category}}</a>
+              </div>
+              <span class="product-rating text-warning">
+                <strong>Seller: </strong>
+                <a (click) = goToShop(productToView.shop.shopId)>{{productToView.shop.shopName}}</a>
+              </span>
+            </div><!-- .product-meta -->
+            <div class="product-tools shop-item">
+              <div class="count-input">
+                  <a class="incr-btn" data-action="decrease" (click) = "decreaseQuantity()" style="cursor: not-allowed;" *ngIf="productToAddToCart.quantityInCart === 1">–</a>
+                <a class="incr-btn" data-action="decrease" (click) = "decreaseQuantity()" style="cursor: pointer;" *ngIf="productToAddToCart.quantityInCart >= 2">–</a>
+                <input class="quantity" type="number" min="1" oninput="validity.valid||(value='')" pattern="^[\d]*$"  [(ngModel)] = "productToAddToCart.quantityInCart" >
+                <a class="incr-btn" data-action="increase" (click) = "increaseQuantity()" style="cursor: pointer;">+</a>
+              </div><!-- .count-input -->
+              <!-- <div class="form-element">
+                <select class="form-control form-control-sm color-select">
+                  <option value="blue" data-image="preview02">Blue</option>
+                  <option value="creme" data-image="preview01">Creme</option>
+                  <option value="red" data-image="preview03">Red</option>
+                </select>
+              </div> -->
+              <!-- .form-element -->
+              <button class="add-to-cart" (click) = "addToCart()">
+                <em>Add to Cart</em>
+                </button>
+                <svg x="0px" y="0px" width="32px" height="32px" viewBox="0 0 32 32">
+    							<path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"></path>
+    						</svg>
+              <!-- .add-to-cart -->
+
+              <br><br>
+
+              <!-- alert -->
+              <app-alert>
+              </app-alert>
+              <!-- /alert -->
+
+              <p-dialog [(visible)]="display">
+                  <p-header>
+                    Want to order from another shop?
+                  </p-header>
+                  Adding new items from {{productToView.shop.shopName}} will clear your current cart.
+                  <p-footer>
+                      <button class="btn btn-ghost btn-default waves-effect waves-light" (click) = "display = false">Go Back</button>
+                      <button class="btn btn-default waves-effect waves-light" (click) = clearCart()>Yes, Clear Cart & Add</button>
+                  </p-footer>
+              </p-dialog>
+
+            </div>
+          </div><!-- .product-info -->
+        </div><!-- .container -->
+      </section><!-- .fw-section.bg-gray -->
+
+

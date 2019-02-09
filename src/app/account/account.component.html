@@ -1,0 +1,165 @@
+<app-header></app-header>
+
+    <!-- Main Content Wrapper -->
+    <main class="content-wrapper">
+
+
+      <!-- Content -->
+    <section class="container padding-top-2x padding-bottom-2x">
+        <h1 class="mobile-center">Hello, <span class="text-semibold">{{user.firstName}}</span></h1>
+        <div class="row padding-top">
+          <div class="col-sm-9 padding-bottom-2x">
+            <!-- Nav Tabs -->
+            <ul class="nav-tabs mobile-center" role="tablist">
+              <li class="active"><a href="#profile" role="tab" data-toggle="tab">
+                <i class="material-icons person"></i>
+                Edit Profile
+              </a></li>
+
+              <li><a href="#password" role="tab" data-toggle="tab">
+                  <i class="material-icons lock"></i>
+                  Edit Password
+                </a></li>
+
+
+              <li><a href="#orders" role="tab" data-toggle="tab">
+                <i class="material-icons shopping_cart"></i>
+                Orders
+              </a></li>
+
+              <!--
+              <li><a href="#whishlist" role="tab" data-toggle="tab">
+                <i class="material-icons favorite"></i>
+                Whishlist (6)
+              </a></li> -->
+            </ul><!-- .nav-tabs -->
+
+            <!-- Tab Panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane transition fade scale in active" id="profile">
+                  <div class="row">
+
+                        <form [formGroup]='update' novalidate>
+
+                            <!-- <div class="ui-g"> -->
+
+                                <div class="form-element">
+                                <label>First name</label>
+                              <input type='text' formControlName='firstName' class='form-control' [(ngModel)] = "user.firstName"/>
+
+                              <div *ngIf="firstName.invalid && (firstName.dirty || isSubmitted)" class="text-danger">
+                                <div *ngIf="firstName.errors.required">First Name is required.</div>
+                              </div>
+                              </div>
+
+
+                              <div class="form-element">
+                                <label>Last name</label>
+                              <input type='text' formControlName='lastName' class='form-control' [(ngModel)] = "user.lastName" />
+
+                              <div *ngIf="lastName.invalid && (lastName.dirty || isSubmitted)" class="text-danger">
+                                <div *ngIf="lastName.errors.required">Last Name is required.</div>
+                              </div>
+                              </div>
+
+                              <div class="form-element">
+                                <label>Mobile number</label>
+                              <input type='number' formControlName='mobileNumber' class='form-control' [(ngModel)] = "user.mobileNumber" maxLength = "8">
+
+                              <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || isSubmitted)" class="text-danger">
+                                <div *ngIf="mobileNumber.errors.required && !mobileNumber.errors.pattern">Mobile number is required.</div>
+                                <div *ngIf="mobileNumber.errors.pattern">Mobile number has to start with 9 or 8.</div>
+                              </div>
+                              </div>
+
+
+
+
+                              <div class="ui-g-12">
+                                <input type="submit" value="Update Profile" class="btn btn-primary btn-block waves-effect waves-light" (click) = updateUser() />
+                                <app-alert></app-alert>
+                            </div>
+                            <!-- </div> -->
+
+                          </form>
+                          </div>
+
+              </div><!-- .tab-pane#profile -->
+
+
+              <div role="tabpanel" class="tab-pane transition fade scale" id="password">
+                  <div class="row">
+                    <form [formGroup]='passwordUpdate' novalidate>
+
+                      <div class="form-element">
+                      <label>New password</label>
+                      <input type='password' formControlName='password' class='form-control' advs-compare="verify" parent='true' placeholder='New Password' minlength = "6">
+
+                        <div *ngIf="password.invalid && (password.dirty || isSubmitted)" class="text-danger">
+                        Password of minimum 6 characters is required.
+                        </div>
+                      </div>
+
+                      <div class="form-element">
+                          <label>Confirm new password</label>
+                        <input type='password' formControlName='verify' class='form-control' advs-compare="password" parent='false' placeholder='Confirm New Password' minlength = "6">
+
+                        <div *ngIf="verify.invalid && (verify.dirty || isSubmitted)" class="text-danger">
+                          <div *ngIf="verify.errors.required">Confirm New Password is required.</div>
+                          <div *ngIf="verify.errors.compare && !verify.errors.required">Password Mismatch.</div>
+                        </div>
+
+                      </div>
+
+                        <input type="submit" value="Update password" class="btn btn-primary btn-block waves-effect waves-light" (click) = updateUserPassword() />
+
+                        <app-alert></app-alert>
+
+                    </form>
+                    </div>
+              </div><!-- .tab-pane#password -->
+
+
+
+              <div role="tabpanel" class="tab-pane transition fade scale" id="orders">
+
+
+                <div *ngIf = "transactions.length === 0" style="text-align:center;">
+                  <img src="../../assets/img/empty-state-icons/transaction-wallet.svg" height=300px width=300px style="display: block; margin-left: auto; margin-right: auto;">
+                  <br>
+                  You have no transactions yet :(
+                </div>
+
+
+                <div class="table-responsive" *ngIf = "transactions.length > 0">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Order #</th>
+                        <th>Date Purchased</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+
+                    <tbody *ngFor='let transaction of transactions.reverse()'>
+                      <tr>
+                        <td><a [routerLink]="['/transaction']" (click)="saveTransactionData(transaction.transactionDeliveryCode)">{{transaction.transactionDeliveryCode}}</a></td>
+                        <td>{{transaction.transactionDatePurchased}}</td>
+                        <td><span class="text-warning">{{transaction.transactionStatus}}</span></td>
+                        <td>${{transaction.transactionTotal}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div><!-- .tab-pane#orders -->
+
+
+            </div><!-- .tab-content -->
+          </div><!-- .col-sm-8 -->
+
+          <!-- Sidebar -->
+
+        </div><!-- .row -->
+      <!-- </section>.container -->
+

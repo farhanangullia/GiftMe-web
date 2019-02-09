@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>giftme</title>
+
+  <!--SEO Meta Tags-->
+  <meta name="description" content="M-Store - Modern E-Commerce Template" />
+  <meta name="keywords" content="shop, e-commerce, modern, minimalist style, responsive, online store, business, mobile, blog, bootstrap, html5, css3, jquery, js, gallery, slider, touch, creative, clean" />
+  <meta name="author" content="Rokaux" />
+
+  <!--Mobile Specific Meta Tag-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<!--   Google Material Icons -->
+  <link href="/css/vendor/material-icons.min.css" rel="stylesheet" media="screen">
+
+ <!-- Brand Icons -->
+  <link href="/css/vendor/socicon.min.css" rel="stylesheet" media="screen">
+
+  <!-- Theme Styles -->
+	<link href="/css/theme.css" rel="stylesheet" media="screen">
+
+  <!-- Page Preloading -->
+  <!-- <script src="js/vendor/page-preloading.js"></script> -->
+
+  <!-- Modernizr -->
+  <script src="js/vendor/modernizr.custom.js"></script>
+</head>
+
+<!-- Body -->
+<!-- Adding/Removing class ".page-preloading" is enabling/disabling background smooth page transition effect and spinner. Make sure you also added/removed link to page-preloading.js script in the <head> of the document. -->
+<body>
+
+  <!-- Page Pre-Loader -->
+  <!-- <div class="page-preloader">
+    <div class="preloader">
+      <img src="/assets/img/preloader.gif" alt="Preloader">
+    </div>
+  </div> <! .page-preloader -->
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+
+    <!-- Navbar -->
+    <header class="navbar">
+
+      <!-- Navbar Header -->
+      <div class="navbar-header">
+
+        <!-- Site Logo -->
+        <a [routerLink]="['/home']" class="site-logo visible-desktop">
+          <img src="../../assets/img/logo/Giftme-logo.png">
+        </a><!-- site-logo.visible-desktop -->
+        <a href="index.html" class="site-logo visible-mobile">
+          <span>[</span> giftme <span>]</span>
+        </a><!-- site-logo.visible-mobile -->
+
+
+        <!-- Mobile Menu Toggle -->
+        <a class={{mobileMenuToggle}} (click) = "toggleState()"><i class="material-icons menu"></i></a>
+      </div><!-- .navbar-header -->
+
+      <!-- Mobile Menu Wrapper -->
+      <div class={{mobileMenuWrapper}}>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <a (click)="accountButton()"><i class="material-icons person"></i></a>
+          <div class="cart-btn">
+            <a (click)="cartButton()">
+              <i>
+                <span class="material-icons shopping_basket"></span>
+                <!-- <span class="count"><counter [counterValue]="myValue" (counterChange) = "myValueChange($event)"></counter></span> -->
+              </i>
+            </a>
+          </div><!-- .cart-btn -->
+        </div><!-- .toolbar -->
+
+        <!-- Main Navigation -->
+        <nav class="main-navigation">
+          <ul class="menu">
+            <li class="menu-item-has-children">
+              <a [routerLink]="['/home']">Home</a>
+            </li>
+
+            <li class="menu-item-has-children">
+              <a (click)="isCollapsed = !isCollapsed" style="cursor: pointer;">Shop by Category <i class="material-icons" style="font-size: 20px">arrow_drop_down</i></a>
+              <div (collapsed)="collapsed($event)"
+              (expanded)="expanded($event)"
+              [collapse]="isCollapsed"
+              class="card card-block card-header">
+                <li><a style="cursor: pointer;" (click) = plushiesButton()>Plushies</a></li>
+                <li><a style="cursor: pointer;" (click) = flowersButton()>Flowers</a></li>
+                <li><a style="cursor: pointer;" (click) = confectioneryButton()>Confectionery</a></li>
+            </div>
+            </li>
+            <li><a [routerLink]="['/shops']">Shops</a> </li>
+
+            <!-- <li><a href="about.html">About</a></li>
+            <li><a href="contacts.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li> -->
+
+            <div *ngIf="isLoggedIn">
+                <button class="btn btn-primary btn-block waves-effect waves-light space-top-none" (click)=logout()>Logout</button>
+            </div>
+
+            <div *ngIf="!isLoggedIn">
+              <button class="btn btn-primary btn-block waves-effect waves-light space-top-none" (click)=loginButton()>Login</button>
+            </div>
+
+          </ul><!-- .menu -->
+        </nav><!-- .main-navigation -->
+      </div><!-- .mobile-menu-wrapper -->
+    </header><!-- .navbar -->

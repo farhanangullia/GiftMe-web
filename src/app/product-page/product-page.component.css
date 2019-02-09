@@ -1,0 +1,12 @@
+::ng-deep .ui-widget {
+  font-family: "Ubuntu";
+}
+
+::ng-deep .ui-widget-content {
+  border: none;
+}
+
+::ng-deep .ui-dialog-footer {
+  padding: 0;
+  text-align: center;
+}
